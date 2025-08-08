@@ -61,7 +61,6 @@ public class CustomerServiceImpl implements CustomerService {
         existingCustomer.setPhone(customerDetails.getPhone());
         existingCustomer.setDateOfBirth(customerDetails.getDateOfBirth());
         existingCustomer.setAge(customerDetails.getAge());
-        existingCustomer.setPan(customerDetails.getPan());
         existingCustomer.setAddress(customerDetails.getAddress());
 
         return customerRepository.save(existingCustomer);

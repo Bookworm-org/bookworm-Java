@@ -1,17 +1,18 @@
 package com.bookworm.entities;
+
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.Set;
 
-/**
+/*
  * Represents a registered customer of the service.
  * Contains personal and contact information, and links to the customer's
  * transactional history.
  * Maps to the 'customers' table.
  */
-
 @Entity
 @Getter
 @Setter
@@ -41,22 +42,18 @@ public class Customer {
     @Column(name = "age")
     private Integer age;
 
-    @Column(name = "pan", length = 10, unique = true)
-    private String pan;
-
     @Column(name = "address", length = 255)
     private String address;
 
     @OneToMany(mappedBy = "customer")
     private Set<Cart> carts;
 
-    @OneToMany(mappedBy = "customer")
-    private Set<Invoice> invoices;
-
-    @OneToMany(mappedBy = "customer")
-    private Set<RentDetail> rentDetails;
-
-    //@OneToOne(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Shelf shelf;
-
+    //    @OneToMany(mappedBy = "customer")
+    //    private Set<Invoice> invoices;
+    //
+    //    @OneToMany(mappedBy = "customer")
+    //    private Set<RentDetail> rentDetails;
+    //
+    //    //@OneToOne(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
+    //    private Shelf shelf;
 }

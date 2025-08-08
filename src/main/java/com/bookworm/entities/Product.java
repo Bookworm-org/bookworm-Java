@@ -75,20 +75,20 @@ public class Product {
     @JoinColumn(name = "type_id", nullable = false)
     private ProductType productType;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<ProductAttribute> attributes;
-
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<ProductBeneficiary> beneficiaries;
-
-    // Relationships to transactional details are typically not managed via cascade from Product
-    @OneToMany(mappedBy = "product")
-    private Set<InvoiceDetail> invoiceDetails;
-
-    @OneToMany(mappedBy = "product")
-    private Set<CartDetail> cartDetails;
-
-    @OneToMany(mappedBy = "product")
-    private Set<RentDetail> rentDetails;
+//    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private Set<ProductAttribute> attributes;
+//
+//    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private Set<ProductBeneficiary> beneficiaries;
+//
+//    // Relationships to transactional details are typically not managed via cascade from Product
+//    @OneToMany(mappedBy = "product")
+//    private Set<InvoiceDetail> invoiceDetails;
+//
+//    @OneToMany(mappedBy = "product")
+//    private Set<CartDetail> cartDetails;
+//
+//    @OneToMany(mappedBy = "product")
+//    private Set<RentDetail> rentDetails;
 
 }
