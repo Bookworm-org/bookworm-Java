@@ -20,7 +20,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
      * @param isbn The ISBN to search for.
      * @return An Optional containing the found product, or an empty Optional if not found.
      */
-    Optional<Product> findByIsbn(String isbn);
+    List<Product> findByGenreId(Integer genreId);
 
     /*
      * Finds all products whose name contains the given string, case-insensitively.
@@ -46,4 +46,8 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
      * @return A list of products that match the rentable status.
      */
     List<Product> findByIsRentable(boolean isRentable);
+    
+    List<Product> findByLanguageId(Integer languageId);
+
+
 }

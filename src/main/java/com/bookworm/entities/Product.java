@@ -85,8 +85,8 @@ public class Product {
 //    @OneToMany(mappedBy = "product")
 //    private Set<InvoiceDetail> invoiceDetails;
 //
-//    @OneToMany(mappedBy = "product")
-//    private Set<CartDetail> cartDetails;
+      @OneToMany(mappedBy = "product")
+     private Set<CartDetail> cartDetails;
 //
 //    @OneToMany(mappedBy = "product")
 //    private Set<RentDetail> rentDetails;

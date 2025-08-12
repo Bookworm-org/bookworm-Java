@@ -33,7 +33,7 @@ public class Cart {
     @Column(name = "is_active")
     private boolean isActive;
 
-//    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private Set<CartDetail> cartDetails;
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<CartDetail> cartDetails;
 
 }

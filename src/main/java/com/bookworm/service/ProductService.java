@@ -47,6 +47,15 @@ public interface ProductService {
     void deleteProduct(Integer id);
     
     List<ProductResponseDTO> findProductsByAuthor(String authorName);
+    
+    List<ProductResponseDTO> findProductsByGenre(Integer genreId);
+    
+    List<ProductResponseDTO> findProductsByName(String name);
+    
+    List<ProductResponseDTO> findProductsByLanguage(Integer languageId);
+
+
+
 
 
 }

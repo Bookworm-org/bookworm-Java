@@ -18,39 +18,41 @@ import java.util.NoSuchElementException;
 @Service
 public class LanguageServiceImpl implements LanguageService {
 
-    private final LanguageRepository languageRepository;
-
-    @Autowired
-    public LanguageServiceImpl(LanguageRepository languageRepository) {
-        this.languageRepository = languageRepository;
-    }
-
-    @Override
-    @Transactional
-    public Language saveLanguage(Language language) {
-        return languageRepository.save(language);
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public Language getLanguageById(Integer id) {
-        return languageRepository.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("Language not found with id: " + id));
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public List<Language> getAllLanguages() {
-        return languageRepository.findAll();
-    }
-
-    @Override
-    @Transactional
-    public void deleteLanguage(Integer id) {
-        if (!languageRepository.existsById(id)) {
-            throw new NoSuchElementException("Language not found with id: " + id);
-        }
-        languageRepository.deleteById(id);
-    }
+//    private final LanguageRepository languageRepository;
+//
+//    @Autowired
+//    public LanguageServiceImpl(LanguageRepository languageRepository) {
+//        this.languageRepository = languageRepository;
+//    }
+//
+//    @Override
+//    @Transactional
+//    public Language saveLanguage(Language language) {
+//        return languageRepository.save(language);
+//    }
+//
+//    @Override
+//    @Transactional(readOnly = true)
+//    public Language getLanguageById(Integer id) {
+//        return languageRepository.findById(id)
+//                .orElseThrow(() -> new NoSuchElementException("Language not found with id: " + id));
+//    }
+//
+//    @Override
+//    @Transactional(readOnly = true)
+//    public List<Language> getAllLanguages() {
+//        return languageRepository.findAll();
+//    }
+//
+//    @Override
+//    @Transactional
+//    public void deleteLanguage(Integer id) {
+//        if (!languageRepository.existsById(id)) {
+//            throw new NoSuchElementException("Language not found with id: " + id);
+//        }
+//        languageRepository.deleteById(id);
+//    }
+    
+   
 }
 

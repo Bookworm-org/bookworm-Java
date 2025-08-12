@@ -83,6 +83,32 @@ public class ProductServiceImpl implements ProductService {
                 .map(this::toResponseDTO) // Reuses your existing mapping method
                 .collect(Collectors.toList());
     }
+    @Override
+    @Transactional(readOnly = true)
+    public List<ProductResponseDTO> findProductsByGenre(Integer genreId) {
+        List<Product> products = productRepository.findByGenreId(genreId);
+        return products.stream()
+                .map(this::toResponseDTO)
+                .collect(Collectors.toList());
+    }
+    
+    @Override
+    @Transactional(readOnly = true)
+    public List<ProductResponseDTO> findProductsByName(String name) {
+        List<Product> products = productRepository.findByNameContainingIgnoreCase(name);
+        return products.stream()
+                .map(this::toResponseDTO)
+                .collect(Collectors.toList());
+    }
+    
+    @Override
+    @Transactional(readOnly = true)
+    public List<ProductResponseDTO> findProductsByLanguage(Integer languageId) {
+        List<Product> products = productRepository.findByLanguageId(languageId);
+        return products.stream()
+                .map(this::toResponseDTO)
+                .collect(Collectors.toList());
+    }
     
     /*
      * Maps fields from a DTO to an entity, including fetching related entities.
