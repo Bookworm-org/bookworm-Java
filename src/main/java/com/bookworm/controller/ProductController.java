@@ -52,4 +52,21 @@ public class ProductController {
         List<ProductResponseDTO> products = productService.findProductsByAuthor(authorName);
         return ResponseEntity.ok(products);
     }
+    @GetMapping("/category/{genreId}")
+    public ResponseEntity<List<ProductResponseDTO>> findProductsByCategory(@PathVariable Integer genreId) {
+        List<ProductResponseDTO> products = productService.findProductsByGenre(genreId);
+        return ResponseEntity.ok(products);
+    }
+    @GetMapping("/search/by-name")
+    public ResponseEntity<List<ProductResponseDTO>> findProductsByName(@RequestParam("name") String productName) {
+        List<ProductResponseDTO> products = productService.findProductsByName(productName);
+        return ResponseEntity.ok(products);
+    }
+    @GetMapping("/language/{languageId}")
+    public ResponseEntity<List<ProductResponseDTO>> findProductsByLanguage(@PathVariable Integer languageId) {
+        List<ProductResponseDTO> products = productService.findProductsByLanguage(languageId);
+        return ResponseEntity.ok(products);
+    }
+ 
+    
 }

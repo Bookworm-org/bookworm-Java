@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 /*
@@ -47,6 +48,14 @@ public class Customer {
 
     @OneToMany(mappedBy = "customer")
     private Set<Cart> carts;
+    
+    @ManyToMany(fetch = FetchType.EAGER) // REMOVED: cascade = {CascadeType.PERSIST, CascadeType.MERGE}
+    @JoinTable(
+            name = "customer_roles",
+            joinColumns = @JoinColumn(name = "customer_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> roles = new HashSet<>();
 
     //    @OneToMany(mappedBy = "customer")
     //    private Set<Invoice> invoices;
