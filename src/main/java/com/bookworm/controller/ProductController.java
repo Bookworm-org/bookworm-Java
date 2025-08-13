@@ -7,6 +7,7 @@ import com.bookworm.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,10 +32,12 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<ProductResponseDTO> createProduct( @RequestBody ProductRequestDTO productRequestDTO) {
+    @PreAuthorize("hasRole('ADMIN')") // Only users with ROLE_ADMIN can access this
+    public ResponseEntity<ProductResponseDTO> createProduct(@RequestBody ProductRequestDTO productRequestDTO) {
         ProductResponseDTO createdProduct = productService.createProduct(productRequestDTO);
         return new ResponseEntity<>(createdProduct, HttpStatus.CREATED);
     }
+
 
     @PutMapping("/{id}")
     public ResponseEntity<ProductResponseDTO> updateProduct(@PathVariable Integer id, @RequestBody ProductRequestDTO productRequestDTO) {
