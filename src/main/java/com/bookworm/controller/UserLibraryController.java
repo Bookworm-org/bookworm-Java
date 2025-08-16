@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/user-collection") // A new, clear mapping for this feature
+
 @RequiredArgsConstructor
 public class UserLibraryController {
 
@@ -24,6 +25,7 @@ public class UserLibraryController {
      * @return A DTO containing the user's shelf details.
      */
     @GetMapping("/{customerId}/shelf")
+    @CrossOrigin(origins = "http://localhost:5173")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<ShelfResponseDTO> getMyShelf(@PathVariable Integer customerId) {
         // You should add a security check here to ensure the authenticated user
