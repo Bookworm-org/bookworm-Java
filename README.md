@@ -16,7 +16,6 @@ A full-stack **web-based platform** designed to simulate a **virtual bookshop** 
 
 ### 🛠️ Backend
 - Java (Spring Boot 3, Spring 6, JPA, REST API)
-- .NET Core (Web API Core 8.0, Entity Core 8.0)
 
 ### 🗄️ Database
 - MySQL 8
