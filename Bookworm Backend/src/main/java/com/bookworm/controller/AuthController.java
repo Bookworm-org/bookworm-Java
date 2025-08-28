@@ -1,3 +1,5 @@
+// In file: src/main/java/com/bookworm/controller/AuthController.java
+
 package com.bookworm.controller;
 
 import com.bookworm.dto.request.LoginRequest;
@@ -13,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -34,14 +37,26 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginRequest) {
+        // Step 1: Authenticate the user
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword())
         );
+
+        // Step 2: Set the authentication in the security context
+        SecurityContextHolder.getContext().setAuthentication(authentication);
         
-        final UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        // Step 3: Get the UserDetails principal
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
+        // Step 4: Fetch the full Customer object to get ID and Name
+        Customer customer = customerRepository.findByEmail(userDetails.getUsername())
+                .orElseThrow(() -> new RuntimeException("Error: Customer not found after authentication."));
+
+        // Step 5: Generate the JWT token
         final String jwt = jwtUtil.generateToken(userDetails);
 
-        return ResponseEntity.ok(new JwtResponse(jwt));
+        // Step 6: Create the response with token, ID, and name
+        return ResponseEntity.ok(new JwtResponse(jwt, customer.getId(), customer.getName()));
     }
 
     @PostMapping("/register")
