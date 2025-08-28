@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/user-collection") // A new, clear mapping for this feature
-
+@CrossOrigin(origins = "http://localhost:5173")
 @RequiredArgsConstructor
 public class UserLibraryController {
 
